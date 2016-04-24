@@ -53,37 +53,28 @@ public class HistorialComprasFragment extends Fragment {
     }
 
     private void initializeData() throws ParseException {
-        list = new ArrayList<>();
-        DateFormat format = new SimpleDateFormat("DD/MM/yyyy hh:mm:ss");
+        list = new ArrayList<Compra>();
         Compra compra = new Compra();
         compra.setIdCompra(1);
-        compra.setEnCamino(false);
-        compra.setEntregado(true);
-        String fecha1 = "20/04/2016 20:04:23";
-        Date date = format.parse(fecha1);
-        compra.setFecha(date);
-        String fecha2 = "21/04/2016 16:34:23";
-        Date date2 = format.parse(fecha2);
-        compra.setFechaEntrega(date2);
-        compra.setSubtotal(230);
-        compra.setIva((float)(compra.getSubtotal() * 1.16));
+        compra.setEnCamino(true);
+        compra.setEntregado(false);
+        compra.setFecha(new Date(1461173013000l));
+        compra.setFechaEntrega(null);
+        compra.setSubtotal(230.23f);
+        compra.setIva((float)(compra.getSubtotal() * 0.16));
         compra.setTotal(compra.getSubtotal() + compra.getIva());
 
         list.add(compra);
 
         Compra compra2 = new Compra();
-        compra.setIdCompra(1);
-        compra.setEnCamino(false);
-        compra.setEntregado(true);
-        String fecha3 = "10/02/2016 12:03:12";
-        Date date3 = format.parse(fecha1);
-        compra.setFecha(date);
-        String fecha4 = "10/02/2016 17:00:35";
-        Date date4 = format.parse(fecha2);
-        compra.setFechaEntrega(date2);
-        compra.setSubtotal(230);
-        compra.setIva((float)(compra.getSubtotal() * 1.16));
-        compra.setTotal(compra.getSubtotal() + compra.getIva());
+        compra2.setIdCompra(1);
+        compra2.setEnCamino(false);
+        compra2.setEntregado(true);
+        compra2.setFecha(new Date(1455127392000l));
+        compra2.setFechaEntrega(new Date(1455145235000l));
+        compra2.setSubtotal(521.24f);
+        compra2.setIva((float)(compra2.getSubtotal() * 0.16));
+        compra2.setTotal(compra2.getSubtotal() + compra2.getIva());
         list.add(compra2);
     }
 }

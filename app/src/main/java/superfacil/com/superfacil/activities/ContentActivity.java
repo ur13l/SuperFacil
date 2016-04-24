@@ -15,6 +15,7 @@ import superfacil.com.superfacil.callbacks.FragmentCallbacks;
 import superfacil.com.superfacil.fragments.FragmentListSaved;
 import superfacil.com.superfacil.fragments.HistorialComprasFragment;
 import superfacil.com.superfacil.fragments.MapFragment;
+import superfacil.com.superfacil.fragments.PagoFragment;
 import superfacil.com.superfacil.fragments.SearchFragment;
 
 public class ContentActivity extends AppCompatActivity implements BackCallback{
@@ -38,6 +39,9 @@ public class ContentActivity extends AppCompatActivity implements BackCallback{
             case R.id.nav_map:
                 f = new MapFragment();
                 break;
+            case R.id.nav_pago:
+                f = new PagoFragment();
+                break;
         }
         ft.replace(R.id.fragment_container, f).commit();
     }
@@ -57,6 +61,7 @@ public class ContentActivity extends AppCompatActivity implements BackCallback{
         super.onResume();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setElevation(0);
     }
 
     @Override

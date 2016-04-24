@@ -18,6 +18,12 @@
     <string name="list_name">Nombre de la lista de compras</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancelar</string>
+    <string name="pago">Información de pago</string>
+    <string name="no_tarjeta">No. de tarjeta</string>
+    <string name="mes">MM</string>
+    <string name="anio">AA</string>
+    <string name="cvv">CVV</string>
+    <string name="nombre_titular">Nombre del titular</string>
     <string name="selecciona_lista">Selecciona la lista de compras</string>
     <string name="delete_product">¿Eliminar producto?</string>
     <string name="delete">Eliminar producto</string>
