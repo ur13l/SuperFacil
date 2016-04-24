@@ -27,7 +27,7 @@ public class DataHelper {
             Product product = new Product();
             product.setId(randInt(1, 1000));
 
-            int prodNum = randInt(1, 8);
+            int prodNum = randInt(1, 7);
             product.setImage(images[prodNum]);
             product.setNombre(prodKeys[prodNum]);
             product.setPrecio(Double.parseDouble(prices[prodNum]));

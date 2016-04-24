@@ -5,11 +5,17 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import superfacil.com.superfacil.R;
+import superfacil.com.superfacil.callbacks.BackCallback;
+import superfacil.com.superfacil.callbacks.FragmentCallbacks;
 import superfacil.com.superfacil.fragments.HistorialComprasFragment;
+import superfacil.com.superfacil.fragments.SearchFragment;
 
-public class ContentActivity extends AppCompatActivity {
+public class ContentActivity extends AppCompatActivity implements BackCallback{
     public final static String OPTION = "content_activity_option";
 
     @Override
@@ -26,5 +32,14 @@ public class ContentActivity extends AppCompatActivity {
                 break;
         }
         ft.replace(R.id.fragment_container, f).commit();
+    }
+
+    @Override
+    public void onBackPressedCallback(){
+        int fragmentCount = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (fragmentCount > 0){
+            getSupportFragmentManager().popBackStackImmediate();
+        }
     }
 }

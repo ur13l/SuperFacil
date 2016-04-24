@@ -1,5 +1,6 @@
 package superfacil.com.superfacil.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,15 +14,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.android.internal.util.Predicate;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import superfacil.com.superfacil.R;
 import superfacil.com.superfacil.adapters.ProductsAdapter;
+import superfacil.com.superfacil.callbacks.BackCallback;
 import superfacil.com.superfacil.model.Product;
 import superfacil.com.superfacil.utilities.DataHelper;
 
@@ -30,9 +29,24 @@ import superfacil.com.superfacil.utilities.DataHelper;
  */
 public class SearchFragment extends Fragment {
 
+    public static final String TAG = SearchFragment.class.getSimpleName();
+
     private RecyclerView mProducts;
     private ProductsAdapter mProductsAdapter;
     private List<Product> mListProducts;
+
+    private BackCallback mBackCallback;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            mBackCallback = (BackCallback) activity;
+        }catch (ClassCastException e){
+            throw new ClassCastException("Activity " + activity + " must implement BackCallback interface");
+        }
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,9 +85,9 @@ public class SearchFragment extends Fragment {
         SearchView sv = new SearchView(getActivity());
         sv.setIconified(false);
 
-        int id = sv.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
-        TextView textView = (TextView) sv.findViewById(id);
-        textView.setHint("Search product...");
+//        int id = sv.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+//        TextView textView = (TextView) sv.findViewById(id);
+//        textView.setHint("Search product...");
 
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -93,6 +107,16 @@ public class SearchFragment extends Fragment {
         item.setActionView(sv);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private List<Product> filter(List<Product> models, String query) {
         query = query.toLowerCase();
 
@@ -104,5 +128,9 @@ public class SearchFragment extends Fragment {
             }
         }
         return filteredModelList;
+    }
+
+    private void onBackPressed(){
+        mBackCallback.onBackPressedCallback();
     }
 }
