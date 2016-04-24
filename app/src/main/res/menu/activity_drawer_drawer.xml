@@ -17,6 +17,11 @@
             android:title="@string/historial_compras"
             android:icon="@drawable/ic_history_black_24dp" />
 
+        <item
+            android:id="@+id/nav_map"
+            android:title="@string/map"
+            android:icon="@drawable/ic_explore" />
+
     </group>
 
     <item android:title="@string/mi_perfil">

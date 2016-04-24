@@ -12,7 +12,9 @@ import android.view.MenuItem;
 import superfacil.com.superfacil.R;
 import superfacil.com.superfacil.callbacks.BackCallback;
 import superfacil.com.superfacil.callbacks.FragmentCallbacks;
+import superfacil.com.superfacil.fragments.FragmentListSaved;
 import superfacil.com.superfacil.fragments.HistorialComprasFragment;
+import superfacil.com.superfacil.fragments.MapFragment;
 import superfacil.com.superfacil.fragments.SearchFragment;
 
 public class ContentActivity extends AppCompatActivity implements BackCallback{
@@ -29,6 +31,12 @@ public class ContentActivity extends AppCompatActivity implements BackCallback{
         switch (option){
             case R.id.nav_historial_compras:
                 f = new HistorialComprasFragment();
+                break;
+            case R.id.nav_listas_guardadas:
+                f = new FragmentListSaved();
+                break;
+            case R.id.nav_map:
+                f = new MapFragment();
                 break;
         }
         ft.replace(R.id.fragment_container, f).commit();

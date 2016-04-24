@@ -34,6 +34,7 @@ public class SearchFragment extends Fragment {
     private RecyclerView mProducts;
     private ProductsAdapter mProductsAdapter;
     private List<Product> mListProducts;
+    private TextView mEmptyView;
 
     private BackCallback mBackCallback;
 
@@ -52,6 +53,8 @@ public class SearchFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mListProducts = DataHelper.getFakeData(getActivity());
+
         setHasOptionsMenu(true);
     }
 
@@ -67,13 +70,26 @@ public class SearchFragment extends Fragment {
 
     private void InitViews(View rootView){
         mProducts = (RecyclerView) rootView.findViewById(R.id.products_recycler_view);
+        mEmptyView = (TextView) rootView.findViewById(R.id.empty_view);
 
-        mListProducts = DataHelper.getFakeData(getActivity());
+        List<Product> products = new ArrayList<>();
 
-        mProductsAdapter = new ProductsAdapter(mListProducts, getActivity());
+        mProductsAdapter = new ProductsAdapter(products, getActivity());
 
         mProducts.setLayoutManager(new LinearLayoutManager(getActivity()));
         mProducts.setAdapter(mProductsAdapter);
+        LoadEmptyDataState();
+    }
+
+    private void LoadEmptyDataState(){
+        if (mProductsAdapter.getItemCount() == 0) {
+            mProducts.setVisibility(View.GONE);
+            mEmptyView.setVisibility(View.VISIBLE);
+        }
+        else {
+            mProducts.setVisibility(View.VISIBLE);
+            mEmptyView.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -85,10 +101,6 @@ public class SearchFragment extends Fragment {
         SearchView sv = new SearchView(getActivity());
         sv.setIconified(false);
 
-//        int id = sv.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
-//        TextView textView = (TextView) sv.findViewById(id);
-//        textView.setHint("Search product...");
-
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -97,9 +109,14 @@ public class SearchFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(final String query) {
-                final List<Product> filteredModelList = filter(mListProducts, query);
-                if (mProductsAdapter != null){
-                    mProductsAdapter.setProducts(filteredModelList);
+                if (query.length() > 0){
+                    final List<Product> filteredModelList = filter(mListProducts, query);
+                    if (mProductsAdapter != null){
+                        mProductsAdapter.setProducts(filteredModelList);
+                        LoadEmptyDataState();
+                    }
+                }else {
+                    ResetAdapter();
                 }
                 return true;
             }
@@ -128,6 +145,14 @@ public class SearchFragment extends Fragment {
             }
         }
         return filteredModelList;
+    }
+
+    private void ResetAdapter(){
+        ArrayList<Product> products = new ArrayList<>();
+        if (mProductsAdapter != null){
+            mProductsAdapter.setProducts(products);
+            LoadEmptyDataState();
+        }
     }
 
     private void onBackPressed(){
