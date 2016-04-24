@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:paddingLeft="10dp"
         android:text="Lista"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:gravity="center"/>
 
 </LinearLayout>

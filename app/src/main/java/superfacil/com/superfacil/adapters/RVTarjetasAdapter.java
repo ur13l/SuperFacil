@@ -42,8 +42,9 @@ public class RVTarjetasAdapter extends RecyclerView.Adapter<RVTarjetasAdapter.Ta
 
     @Override
     public void onBindViewHolder(TarjetasViewHolder holder, int position) {
-
-
+        String strTitle = "•••• •••• •••• "+ list.get(position).getNoTarjeta().substring(12);
+        holder.title.setText(strTitle);
+        holder.description.setText(list.get(position).getNombre());
     }
 
     @Override
@@ -69,10 +70,13 @@ public class RVTarjetasAdapter extends RecyclerView.Adapter<RVTarjetasAdapter.Ta
 
 
     public static class TarjetasViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
+        TextView title;
+        TextView description;
 
         TarjetasViewHolder(View itemView) {
             super(itemView);
+            title = (TextView) itemView.findViewById(R.id.title);
+            description = (TextView) itemView.findViewById(R.id.description);
 
             itemView.setOnClickListener(this);
         }

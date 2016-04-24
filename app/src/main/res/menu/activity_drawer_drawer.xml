@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_principal"
-            android:title="@string/principal"
-            android:icon="@drawable/ic_main" />
+        <!--<item-->
+            <!--android:id="@+id/nav_principal"-->
+            <!--android:title="@string/principal"-->
+            <!--android:icon="@drawable/ic_main" />-->
 
         <item
             android:id="@+id/nav_listas_guardadas"
@@ -28,7 +28,7 @@
         <menu>
             <item
                 android:id="@+id/nav_perfil"
-                android:icon="@drawable/profile"
+                android:icon="@drawable/profile_drawer"
                 android:title="@string/perfil" />
             <item
                 android:id="@+id/nav_pago"

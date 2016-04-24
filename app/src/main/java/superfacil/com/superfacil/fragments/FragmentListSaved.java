@@ -14,7 +14,6 @@ import io.realm.RealmList;
 import io.realm.RealmResults;
 import superfacil.com.superfacil.R;
 import superfacil.com.superfacil.adapters.ListAllShopingListAdapter;
-import superfacil.com.superfacil.adapters.ShopingListAdapter;
 import superfacil.com.superfacil.callbacks.DialogAddListCallback;
 import superfacil.com.superfacil.fragments.dialogFragments.CreateList;
 import superfacil.com.superfacil.model.Product;
@@ -84,6 +83,7 @@ public class FragmentListSaved extends Fragment implements DialogAddListCallback
         shopingList.setProducts(products);
 
         RealmService.saveList(shopingList, RealmService.getInstace());
+        mAdapter.notifyDataSetChanged();
 
         mDialog.dismiss();
     }

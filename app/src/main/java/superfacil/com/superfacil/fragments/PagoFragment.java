@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import superfacil.com.superfacil.R;
+import superfacil.com.superfacil.adapters.RVHistorialAdapter;
+import superfacil.com.superfacil.adapters.RVTarjetasAdapter;
 import superfacil.com.superfacil.model.Tarjeta;
 
 /**
@@ -33,6 +36,7 @@ public class PagoFragment extends Fragment{
     private RecyclerView rv;
     private TextView emptyView;
     private List<Tarjeta> list;
+    private RVTarjetasAdapter adapter;
     SharedPreferences prefs;
 
     @Override
@@ -48,8 +52,13 @@ public class PagoFragment extends Fragment{
         fab = (FloatingActionButton) getActivity().findViewById(R.id.fab_pago);
         rv = (RecyclerView) v.findViewById(R.id.rv_tarjetas);
         emptyView = (TextView) v.findViewById(R.id.empty_view);
-
-        fab.setVisibility(View.VISIBLE);
+        rv.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        rv.setLayoutManager(llm);
+        adapter = new RVTarjetasAdapter(list);
+        rv.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,10 +79,22 @@ public class PagoFragment extends Fragment{
         return v;
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        fab.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        fab.setVisibility(View.GONE);
+    }
+
     public void initializeData(){
         int cont = 0;
         list = new ArrayList<>();
-        while(prefs.getString("numero_tarjeta"+cont, null) != null){
+        while(prefs.getString(NUMERO+cont, null) != null){
             Tarjeta tarjeta = new Tarjeta();
             tarjeta.setNoTarjeta(prefs.getString(NUMERO+cont, null));
             tarjeta.setNombre(prefs.getString(NOMBRE+cont, null));
@@ -81,6 +102,7 @@ public class PagoFragment extends Fragment{
             tarjeta.setAnio(prefs.getString(ANIO+cont, null));
             tarjeta.setCvv(prefs.getString(CVV+cont, null));
             list.add(tarjeta);
+            cont++;
         }
     }
 }

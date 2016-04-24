@@ -46,4 +46,12 @@ public class RealmService {
         realm.commitTransaction();
 
     }
+
+    public static void deleteProduct(RealmList<Product> products, Product product, Realm realm){
+        realm.beginTransaction();
+
+        products.remove(product);
+
+        realm.commitTransaction();
+    }
 }

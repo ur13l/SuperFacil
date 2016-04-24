@@ -22,6 +22,7 @@ import superfacil.com.superfacil.callbacks.BackCallback;
 import superfacil.com.superfacil.callbacks.FragmentCallbacks;
 import superfacil.com.superfacil.fragments.PrincipalFragment;
 import superfacil.com.superfacil.fragments.SearchFragment;
+import superfacil.com.superfacil.utilities.ViewUtils;
 
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FragmentCallbacks, BackCallback {
@@ -53,6 +54,7 @@ public class DrawerActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+            ViewUtils.HideKeyBoard(this, drawer);
         } else {
             super.onBackPressed();
         }
