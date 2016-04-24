@@ -39,6 +39,7 @@ public class PagoFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        initializeData();
     }
 
     @Override

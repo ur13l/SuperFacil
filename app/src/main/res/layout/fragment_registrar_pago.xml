@@ -76,4 +76,13 @@
             android:singleLine="true"
             android:hint="@string/nombre_titular" />
     </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/registrar_tarjeta"
+        android:background="@color/colorAccent"
+        android:textColor="#FFF"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="Registrar tarjeta"/>
 </LinearLayout>

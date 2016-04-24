@@ -7,9 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import io.realm.RealmList;
+import io.realm.RealmResults;
 import superfacil.com.superfacil.R;
+import superfacil.com.superfacil.adapters.ListAllShopingListAdapter;
+import superfacil.com.superfacil.adapters.ShopingListAdapter;
 import superfacil.com.superfacil.callbacks.DialogAddListCallback;
 import superfacil.com.superfacil.fragments.dialogFragments.CreateList;
 import superfacil.com.superfacil.model.Product;
@@ -25,6 +30,10 @@ public class FragmentListSaved extends Fragment implements DialogAddListCallback
     CreateList mDialog;
 
     private FloatingActionButton mFab;
+
+    private ListView mShopping;
+    private ListAllShopingListAdapter mAdapter;
+    private RealmResults<ShopingList> mShopingLists;
 
     @Nullable
     @Override
@@ -42,6 +51,19 @@ public class FragmentListSaved extends Fragment implements DialogAddListCallback
             @Override
             public void onClick(View v) {
                 ShowAddList();
+            }
+        });
+
+        mShopingLists = RealmService.getAllShoppingLists(RealmService.getInstace());
+        mShopping = (ListView) rootView.findViewById(R.id.list_shopping);
+
+        mAdapter = new ListAllShopingListAdapter(mShopingLists, getActivity());
+
+        mShopping.setAdapter(mAdapter);
+        mShopping.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ShowProductsList(mShopingLists.get(position).getProducts());
             }
         });
     }
@@ -71,5 +93,12 @@ public class FragmentListSaved extends Fragment implements DialogAddListCallback
         if (mDialog != null){
             mDialog.dismiss();
         }
+    }
+
+    private void ShowProductsList(RealmList<Product> products){
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, FragmentDetailShopping.newInstance(products))
+                .addToBackStack(FragmentDetailShopping.TAG)
+                .commit();
     }
 }

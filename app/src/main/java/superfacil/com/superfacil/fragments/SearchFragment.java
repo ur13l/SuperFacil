@@ -72,12 +72,6 @@ public class SearchFragment extends Fragment{
 
     private void InitViews(View rootView){
         mProducts = (RecyclerView) rootView.findViewById(R.id.products_recycler_view);
-        mProducts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "Toast", Toast.LENGTH_SHORT).show();
-            }
-        });
         mEmptyView = (TextView) rootView.findViewById(R.id.empty_view);
 
         List<Product> products = new ArrayList<>();
