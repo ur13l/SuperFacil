@@ -18,25 +18,49 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/title"
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:layout_height="match_parent"
-                android:text="Titulo"
-                android:textSize="30sp"
-                android:gravity="center|left"/>
+                android:orientation="vertical"
+                android:paddingLeft="5dp">
 
-            <TextView
-                android:id="@+id/date"
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:text="Titulo"
+                    android:textSize="17sp"
+                    android:gravity="center|left"/>
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:text="12/23/2016"
+                    android:textSize="17sp"
+                    android:gravity="center|left"
+                    android:maxLines="1"
+                    android:ellipsize="end"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:text="12/23/2016"
-                android:textSize="30sp"
-                android:gravity="center|left"
-                android:maxLines="1"
-                android:ellipsize="end"/>
+                android:background="@color/colorAccent">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_keyboard_arrow_right_white_24dp"/>
+
+            </RelativeLayout>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>

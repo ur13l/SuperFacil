@@ -54,7 +54,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
         Glide.with(mContext).load(product.getImage()).crossFade().into(holder.imageProduct);
         holder.productTitle.setText(product.getNombre());
-        holder.productPrice.setText(String.valueOf(product.getPrecio()));
+        holder.productPrice.setText("$" + String.valueOf(product.getPrecio()));
     }
 
     @Override

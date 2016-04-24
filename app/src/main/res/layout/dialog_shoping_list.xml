@@ -5,6 +5,13 @@
     android:layout_gravity="center"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/selecciona_lista"
+        android:gravity="center"
+        android:textSize="20sp"/>
+
     <ListView
         android:id="@+id/list_shopping"
         android:layout_width="match_parent"

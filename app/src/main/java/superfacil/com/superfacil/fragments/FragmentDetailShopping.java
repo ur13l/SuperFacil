@@ -45,6 +45,7 @@ public class FragmentDetailShopping extends Fragment {
         mAdapter = new DetailShppingAdapter(mProducts, getActivity());
         mProductsList.setAdapter(mAdapter);
     }
+
     public void setProducts(RealmList<Product> products){
         mProducts = products;
     }

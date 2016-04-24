@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import io.realm.RealmResults;
 import superfacil.com.superfacil.R;
@@ -66,6 +67,8 @@ public class DialogSelectList extends DialogFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 RealmService.addProduct(mShopingLists.get(position), mProduct, RealmService.getInstace());
+                dismiss();
+                Toast.makeText(getActivity(), R.string.product_added, Toast.LENGTH_SHORT).show();
             }
         });
 

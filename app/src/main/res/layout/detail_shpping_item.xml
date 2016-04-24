@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:orientation="vertical"
-    android:layout_margin="5dp">
+    android:layout_margin="15dp">
 
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -36,7 +36,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="Titulo"
-                    android:gravity="center|left"/>
+                    android:gravity="bottom|left"/>
 
                 <TextView
                     android:id="@+id/price_product"
@@ -44,9 +44,23 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="Titulo"
-                    android:gravity="center|left"/>
+                    android:gravity="left"/>
             </LinearLayout>
 
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@color/red">
+
+                <ImageView
+                    android:id="@+id/delete_product"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_clear_white_24dp"/>
+
+            </RelativeLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
