@@ -1,8 +1,12 @@
 package superfacil.com.superfacil.model.realm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
+import superfacil.com.superfacil.model.Product;
 import superfacil.com.superfacil.model.ShopingList;
 
 /**
@@ -30,5 +34,16 @@ public class RealmService {
         realm.copyToRealm(shopingList);
 
         realm.commitTransaction();
+    }
+
+    public static void addProduct(ShopingList shoppingList, Product product, Realm realm){
+
+        realm.beginTransaction();
+
+        RealmList<Product> realmResults = shoppingList.getProducts();
+        realmResults.add(product);
+
+        realm.commitTransaction();
+
     }
 }
