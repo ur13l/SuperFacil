@@ -1,9 +1,11 @@
 package superfacil.com.superfacil.model;
 
+import io.realm.RealmObject;
+
 /**
  * Created by edgarperez on 4/23/16.
  */
-public class Product {
+public class Product extends RealmObject{
 
     private int id;
     private String nombre;

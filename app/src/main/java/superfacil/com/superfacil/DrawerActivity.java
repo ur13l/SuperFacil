@@ -18,10 +18,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import superfacil.com.superfacil.activities.ContentActivity;
+import superfacil.com.superfacil.callbacks.BackCallback;
+import superfacil.com.superfacil.callbacks.FragmentCallbacks;
 import superfacil.com.superfacil.fragments.PrincipalFragment;
+import superfacil.com.superfacil.fragments.SearchFragment;
 
 public class DrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, FragmentCallbacks, BackCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +32,6 @@ public class DrawerActivity extends AppCompatActivity
         setContentView(R.layout.activity_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -67,7 +61,7 @@ public class DrawerActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.drawer, menu);
+        //getMenuInflater().inflate(R.menu.drawer, menu);
         return true;
     }
 
@@ -98,5 +92,22 @@ public class DrawerActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void showFragmentSearch() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new SearchFragment())
+                .addToBackStack(SearchFragment.TAG)
+                .commit();
+    }
+
+    @Override
+    public void onBackPressedCallback(){
+        int fragmentCount = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (fragmentCount > 0){
+            getSupportFragmentManager().popBackStackImmediate();
+        }
     }
 }

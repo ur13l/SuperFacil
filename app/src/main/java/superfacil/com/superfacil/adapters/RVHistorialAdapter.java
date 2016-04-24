@@ -107,7 +107,7 @@ public class RVHistorialAdapter extends RecyclerView.Adapter<RVHistorialAdapter.
             AppCompatActivity a = (AppCompatActivity)v.getContext();
             FragmentManager fm = a.getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            Fragment f = DetalleCompraFragment.newInstance(list.get(this.getAdapterPosition()).getIdCompra());
+            Fragment f = DetalleCompraFragment.newInstance(list.get(this.getAdapterPosition()).getIdCompra(), list.get(this.getAdapterPosition()).getSubtotal());
             ft.replace(R.id.fragment_container, f)
                     .addToBackStack(null)
                     .commit();

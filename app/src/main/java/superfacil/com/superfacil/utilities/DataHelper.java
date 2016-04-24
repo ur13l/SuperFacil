@@ -27,7 +27,29 @@ public class DataHelper {
             Product product = new Product();
             product.setId(randInt(1, 1000));
 
-            int prodNum = randInt(1, 8);
+            int prodNum = randInt(1, 7);
+            product.setImage(images[prodNum]);
+            product.setNombre(prodKeys[prodNum]);
+            product.setPrecio(Double.parseDouble(prices[prodNum]));
+
+            products.add(product);
+        }
+
+        return products;
+    }
+
+    public static List<Product> getFakeDataSelected(Context activity, int value){
+        List<Product> products = new ArrayList<>();
+
+        String[] images = activity.getResources().getStringArray(R.array.images);
+        String[] prodKeys = activity.getResources().getStringArray(R.array.product);
+        String[] prices = activity.getResources().getStringArray(R.array.prices);
+
+        for (int i=20*value; i<(20*value)+20; i++){
+            Product product = new Product();
+            product.setId(randInt(1, 1000));
+
+            int prodNum = randInt(1, 7);
             product.setImage(images[prodNum]);
             product.setNombre(prodKeys[prodNum]);
             product.setPrecio(Double.parseDouble(prices[prodNum]));

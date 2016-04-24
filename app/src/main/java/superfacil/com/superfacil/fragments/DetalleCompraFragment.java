@@ -3,18 +3,25 @@ package superfacil.com.superfacil.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import superfacil.com.superfacil.R;
+import superfacil.com.superfacil.adapters.RVDetalleCompraAdapter;
+import superfacil.com.superfacil.adapters.RVHistorialAdapter;
 import superfacil.com.superfacil.model.Product;
+import superfacil.com.superfacil.utilities.DataHelper;
+import superfacil.com.superfacil.utilities.MathFormat;
 
 
 /**
@@ -23,6 +30,11 @@ import superfacil.com.superfacil.model.Product;
 public class DetalleCompraFragment extends Fragment {
     private ImageView imageView;
     private RecyclerView rv;
+    private List<Product> mListProducts;
+    private RVDetalleCompraAdapter adapter;
+    private TextView subtotal;
+    private TextView iva;
+    private TextView total;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -32,6 +44,8 @@ public class DetalleCompraFragment extends Fragment {
         appcom.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         appcom.getSupportActionBar().setHomeButtonEnabled(true);
         appcom.getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+
+        mListProducts = DataHelper.getFakeDataSelected(getActivity(), getArguments().getInt("id_compra"));
         //setHasOptionsMenu(true);
     }
 
@@ -43,6 +57,23 @@ public class DetalleCompraFragment extends Fragment {
         Picasso.with(imageView.getContext()).load("http://steezo.com/wp-content/uploads/2012/12/man-in-suit2.jpg")
                 .placeholder(R.drawable.user)
                 .into(imageView);
+
+        rv.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        rv.setLayoutManager(llm);
+        adapter = new RVDetalleCompraAdapter(mListProducts);
+        rv.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+        subtotal = (TextView) v.findViewById(R.id.subtotal);
+        iva = (TextView) v.findViewById(R.id.iva);
+        total = (TextView) v.findViewById(R.id.total);
+
+        float st = getArguments().getFloat("subtotal");
+        subtotal.setText("Subtotal: $"+st);
+        iva.setText("IVA: $"+ MathFormat.removeDots((float)(MathFormat.round(st *0.16, 2))));
+        total.setText("Total: $"+  MathFormat.removeDots((float)(MathFormat.round((st)+(st*0.16), 2))));
         return v;
     }
 
@@ -52,10 +83,11 @@ public class DetalleCompraFragment extends Fragment {
         return list;
     }
 
-    public static DetalleCompraFragment newInstance(long idCompra){
+    public static DetalleCompraFragment newInstance(long idCompra, float subtotal){
         DetalleCompraFragment fragment = new DetalleCompraFragment();
         Bundle args = new Bundle();
         args.putLong("id_compra", idCompra);
+        args.putFloat("subtotal", subtotal);
         fragment.setArguments(args);
         return fragment;
     }

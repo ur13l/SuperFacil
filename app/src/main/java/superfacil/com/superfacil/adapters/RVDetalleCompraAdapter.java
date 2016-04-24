@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
@@ -44,10 +45,8 @@ public class RVDetalleCompraAdapter extends RecyclerView.Adapter<RVDetalleCompra
     @Override
     public void onBindViewHolder(DetalleCompraViewHolder holder, int position) {
         holder.nombre.setText(list.get(position).getNombre());
-        holder.precio.setText(MathFormat.removeDots((float)MathFormat.round(list.get(position).getPrecio(),2)));
-        Picasso.with(holder.imagen.getContext()).load("http://steezo.com/wp-content/uploads/2012/12/man-in-suit2.jpg")
-                .placeholder(R.drawable.product_default)
-                .into(holder.imagen);
+        holder.precio.setText("$"+MathFormat.removeDots((float)MathFormat.round(list.get(position).getPrecio(),2))+".00");
+        Glide.with(holder.imagen.getContext()).load(list.get(position).getImage()).crossFade().into(holder.imagen);
 
     }
 

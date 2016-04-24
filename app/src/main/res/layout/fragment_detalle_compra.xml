@@ -6,10 +6,9 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="?attr/actionBarSize"
         android:layout_gravity="center_horizontal"
-        android:background="@color/colorPrimaryDark"
-        android:layout_weight="0.00"></FrameLayout>
+        android:background="@color/colorPrimary"></FrameLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="70dp"
@@ -35,7 +34,7 @@
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:background="#888"/>
+            android:background="#bbb"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -48,4 +47,34 @@
             android:id="@+id/rv_detalle_compra"
             android:layout_height="200dp"></android.support.v7.widget.RecyclerView>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="right"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:id="@+id/subtotal"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:id="@+id/iva"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:id="@+id/total"/>
+    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:foreground="?attr/selectableItemBackground"
+        android:textColor="#FFF"
+        android:text="Repetir pedido"
+        />
 </LinearLayout>
