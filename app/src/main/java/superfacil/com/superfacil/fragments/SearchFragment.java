@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,13 +22,14 @@ import java.util.List;
 import superfacil.com.superfacil.R;
 import superfacil.com.superfacil.adapters.ProductsAdapter;
 import superfacil.com.superfacil.callbacks.BackCallback;
+import superfacil.com.superfacil.callbacks.DialogAddListCallback;
 import superfacil.com.superfacil.model.Product;
 import superfacil.com.superfacil.utilities.DataHelper;
 
 /**
  * Created by edgarperez on 4/23/16.
  */
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment{
 
     public static final String TAG = SearchFragment.class.getSimpleName();
 
@@ -70,6 +72,12 @@ public class SearchFragment extends Fragment {
 
     private void InitViews(View rootView){
         mProducts = (RecyclerView) rootView.findViewById(R.id.products_recycler_view);
+        mProducts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Toast", Toast.LENGTH_SHORT).show();
+            }
+        });
         mEmptyView = (TextView) rootView.findViewById(R.id.empty_view);
 
         List<Product> products = new ArrayList<>();
@@ -158,4 +166,5 @@ public class SearchFragment extends Fragment {
     private void onBackPressed(){
         mBackCallback.onBackPressedCallback();
     }
+
 }

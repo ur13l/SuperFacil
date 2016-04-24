@@ -15,6 +15,9 @@
     <string name="map">Seguimiento de pedido</string>
     <string name="pedido">Posición actual de tu pedido</string>
     <string name="tiempo_aproximado">Tiempo de llegada aproximado: 15 minutos</string>
+    <string name="list_name">Nombre de la lista de compras</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancelar</string>
 
     <string-array name="images" formatted="false" >
         <item>https://www.walmart.com.mx/super/images/products/img_large/0750194345784L.jpg</item>
