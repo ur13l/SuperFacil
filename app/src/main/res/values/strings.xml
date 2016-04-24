@@ -5,7 +5,11 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="search">Search</string>
+    <string name="principal">Principal</string>
+    <string name="listas_guardadas">Listas guardadas</string>
+    <string name="mi_perfil">Mi perfil</string>
+    <string name="perfil">Perfil</string>
+    <string name="historial_compras">Historial de compras</string>
 
     <string-array name="images" formatted="false" >
         <item>https://www.walmart.com.mx/super/images/products/img_large/0750194345784L.jpg</item>
