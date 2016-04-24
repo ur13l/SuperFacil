@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp"
+    android:foreground="?attr/selectableItemBackground"
     style="@style/AppTheme.CardViewStyle"
     card_view:cardCornerRadius="4dp">
 
@@ -15,7 +16,7 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="7"
+            android:layout_weight="6.62"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
@@ -33,10 +34,21 @@
                 android:id="@+id/description"
                 android:text="Entregado"/>
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:text="$550.20"
+            android:id="@+id/total"
+            android:layout_weight="1" />
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
