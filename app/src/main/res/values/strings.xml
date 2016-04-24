@@ -10,4 +10,37 @@
     <string name="mi_perfil">Mi perfil</string>
     <string name="perfil">Perfil</string>
     <string name="historial_compras">Historial de compras</string>
+
+    <string-array name="images" formatted="false" >
+        <item>https://www.walmart.com.mx/super/images/products/img_large/0750194345784L.jpg</item>
+        <item>http://www.reasonwhy.es/sites/default/files/coca%20cola%20noticia.jpg</item>
+        <item>http://www.pedidos.com.mx/myfotos/xLarge/(X)LCO-JAB-ZOTE.jpg</item>
+        <item>http://www.superama.com.mx/Content/images/products/img_large/0750105242042L.jpg</item>
+        <item>https://bamfcg.files.wordpress.com/2010/09/cheetosviejos.jpg</item>
+        <item>http://veonoticia.com/wp-content/uploads/2014/06/desechables.jpg</item>
+        <item>http://www.colgate.com/CP15/en/us/oc/products/toothpaste/colgate-cavity-protection/images/Cavity-Protection-Toothpaste_maglens-lg.png</item>
+        <item>https://ethicsalarms.files.wordpress.com/2014/03/listerine-cool-mint-antiseptic-mouthwash.jpg</item>
+    </string-array>
+
+    <string-array name="product" formatted="false" >
+        <item>Papel higienico</item>
+        <item>Coca-cola</item>
+        <item>Jabón Zote</item>
+        <item>Frijoles La Sierra</item>
+        <item>Chetos</item>
+        <item>Pañales</item>
+        <item>Pasta dental</item>
+        <item>Listerine</item>
+    </string-array>
+
+    <string-array name="prices" formatted="false" >
+        <item>20</item>
+        <item>11</item>
+        <item>8</item>
+        <item>15</item>
+        <item>8</item>
+        <item>50</item>
+        <item>22</item>
+        <item>50</item>
+    </string-array>
 </resources>
