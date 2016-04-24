@@ -10,6 +10,7 @@
     <string name="mi_perfil">Mi perfil</string>
     <string name="perfil">Perfil</string>
     <string name="historial_compras">Historial de compras</string>
+    <string name="search">Search</string>
 
     <string-array name="images" formatted="false" >
         <item>https://www.walmart.com.mx/super/images/products/img_large/0750194345784L.jpg</item>
