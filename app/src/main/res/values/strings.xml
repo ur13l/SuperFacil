@@ -28,6 +28,7 @@
     <string name="delete_product">¿Eliminar producto?</string>
     <string name="delete">Eliminar producto</string>
     <string name="product_added">Producto agregado</string>
+    <string name="pay">Pagar</string>
 
     <string-array name="images" formatted="false" >
         <item>https://www.walmart.com.mx/super/images/products/img_large/0750194345784L.jpg</item>

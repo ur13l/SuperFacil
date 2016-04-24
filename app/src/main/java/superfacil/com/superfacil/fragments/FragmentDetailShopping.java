@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import io.realm.RealmList;
@@ -22,6 +23,8 @@ public class FragmentDetailShopping extends Fragment {
     private ListView mProductsList;
     private DetailShppingAdapter mAdapter;
     private RealmList<Product> mProducts;
+
+    private Button mPay;
 
     public static FragmentDetailShopping newInstance(RealmList<Product> products){
         FragmentDetailShopping fragmentDetailShopping = new FragmentDetailShopping();
@@ -44,9 +47,24 @@ public class FragmentDetailShopping extends Fragment {
         mProductsList = (ListView) rootView.findViewById(R.id.products_list);
         mAdapter = new DetailShppingAdapter(mProducts, getActivity());
         mProductsList.setAdapter(mAdapter);
+
+        mPay = (Button) rootView.findViewById(R.id.pay);
+        mPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowPayment();
+            }
+        });
     }
 
     public void setProducts(RealmList<Product> products){
         mProducts = products;
+    }
+
+    private void ShowPayment(){
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new FragmentPayment())
+                .addToBackStack(FragmentPayment.TAG)
+                .commit();
     }
 }
