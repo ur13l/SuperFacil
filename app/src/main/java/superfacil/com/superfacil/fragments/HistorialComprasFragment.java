@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -52,8 +53,8 @@ public class HistorialComprasFragment extends Fragment {
     }
 
     private void initializeData() throws ParseException {
-
-        DateFormat format = new SimpleDateFormat("DD/MM/YYYY hh:mm:ss");
+        list = new ArrayList<>();
+        DateFormat format = new SimpleDateFormat("DD/MM/yyyy hh:mm:ss");
         Compra compra = new Compra();
         compra.setIdCompra(1);
         compra.setEnCamino(false);

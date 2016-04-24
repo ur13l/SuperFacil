@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,14 +34,10 @@ public class RVHistorialAdapter extends RecyclerView.Adapter<RVHistorialAdapter.
 
     @Override
     public void onBindViewHolder(HistorialViewHolder holder, int position) {
-       /*
-        holder.nombre.setText(directorio.get(position).getNombre());
-        holder.telefono.setText(directorio.get(position).getTelefono());
-        holder.direccion.setText(directorio.get(position).getDireccion());
-        Picasso.with(holder.image.getContext()).load("https://scontent-atl3-1.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/12631273_1130437723656560_589676129209315058_n.jpg?_nc_eui=ARjemxZWiglR9GTDbDpwdIEKt1vEoJcyadiKfNmq_e9idtveI6TSGg&oh=fcc864d2883d28a9ad1d493c7c202bc4&oe=57931F0A")
-                .placeholder(R.drawable.user)
-                .into(holder.image);
-                */
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String fecha = df.format(list.get(position).getFecha());
+        holder.title.setText("Compra del " + fecha);
+        holder.description.setText("");
     }
 
     @Override
@@ -72,6 +70,8 @@ public class RVHistorialAdapter extends RecyclerView.Adapter<RVHistorialAdapter.
         HistorialViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
+            description = (TextView) itemView.findViewById(R.id.description);
+            status = (ImageView) itemView.findViewById(R.id.status);
             itemView.setOnClickListener(this);
         }
 

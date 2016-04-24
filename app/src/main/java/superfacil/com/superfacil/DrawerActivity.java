@@ -1,5 +1,6 @@
 package superfacil.com.superfacil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import superfacil.com.superfacil.activities.ContentActivity;
 import superfacil.com.superfacil.fragments.PrincipalFragment;
 
 public class DrawerActivity extends AppCompatActivity
@@ -89,8 +91,9 @@ public class DrawerActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-
+        Intent intent = new Intent(this, ContentActivity.class);
+        intent.putExtra(ContentActivity.OPTION,id);
+        startActivity(intent);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
