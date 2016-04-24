@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,10 +24,9 @@ import superfacil.com.superfacil.R;
 public class MapFragment extends Fragment {
 
     private GoogleMap mMap;
-    private com.google.android.gms.maps.MapFragment mMapFragment;
+    private com.google.android.gms.maps.SupportMapFragment mMapFragment;
 
-    static final LatLng HAMBURG = new LatLng(53.558, 9.927);
-    static final LatLng KIEL = new LatLng(53.551, 9.993);
+    static final LatLng LOCATION = new LatLng(21.1234877, -101.6833939);
 
     @Nullable
     @Override
@@ -44,24 +44,48 @@ public class MapFragment extends Fragment {
     }
 
     private void InitMap(){
-        
-        mMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map))
-                .getMap();
+        mMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        mMap = mMapFragment.getMap();
 
-        Marker hamburg = mMap.addMarker(new MarkerOptions().position(HAMBURG)
-                .title("Hamburg"));
-        Marker kiel = mMap.addMarker(new MarkerOptions()
-                .position(KIEL)
-                .title("Kiel")
-                .snippet("Kiel is cool")
-                .icon(BitmapDescriptorFactory
-                        .fromResource(R.drawable.ic_explore)));
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+            // Use default InfoWindow frame
+            @Override
+            public View getInfoWindow(Marker arg0) {
+                return null;
+            }
+
+            // Defines the contents of the InfoWindow
+            @Override
+            public View getInfoContents(Marker arg0) {
+
+                // Getting view from the layout file info_window_layout
+                View v = getActivity().getLayoutInflater().inflate(R.layout.title_map_marker, null);
+
+                // Getting the position from the marker
+                LatLng latLng = arg0.getPosition();
+
+                // Getting reference to the TextView to set latitude
+                TextView tvLat = (TextView) v.findViewById(R.id.tv_lat);
+
+                // Getting reference to the TextView to set longitude
+                TextView tvLng = (TextView) v.findViewById(R.id.tv_lng);
+
+                // Returning the view containing InfoWindow contents
+                return v;
+
+            }
+        });
+
+        mMap.addMarker(new MarkerOptions()
+                .position(LOCATION))
+                .showInfoWindow();
 
         // Move the camera instantly to hamburg with a zoom of 15.
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(HAMBURG, 15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION, 10));
 
         // Zoom in, animating the camera.
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
 
     }
 

@@ -43,11 +43,30 @@ public class ContentActivity extends AppCompatActivity implements BackCallback{
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home){
+            onBackPressed();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
     public void onBackPressedCallback(){
         int fragmentCount = getSupportFragmentManager().getBackStackEntryCount();
 
         if (fragmentCount > 0){
             getSupportFragmentManager().popBackStackImmediate();
+        }else {
+            finish();
         }
     }
 }
