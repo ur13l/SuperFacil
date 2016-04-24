@@ -2,6 +2,8 @@ package superfacil.com.superfacil.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Button;
 
 import com.squareup.picasso.Picasso;
 
@@ -35,6 +38,9 @@ public class DetalleCompraFragment extends Fragment {
     private TextView subtotal;
     private TextView iva;
     private TextView total;
+    private Button repetir;
+    private Button cancelar;
+    private Button rastrear;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -74,6 +80,28 @@ public class DetalleCompraFragment extends Fragment {
         subtotal.setText("Subtotal: $"+st);
         iva.setText("IVA: $"+ MathFormat.removeDots((float)(MathFormat.round(st *0.16, 2))));
         total.setText("Total: $"+  MathFormat.removeDots((float)(MathFormat.round((st)+(st*0.16), 2))));
+
+        repetir = (Button) v.findViewById(R.id.repetir);
+        cancelar = (Button) v.findViewById(R.id.cancelar);
+        rastrear = (Button) v.findViewById(R.id.rastrear);
+        boolean entregado = getArguments().getBoolean("entregado");
+        if(!entregado){
+            repetir.setVisibility(View.GONE);
+            cancelar.setVisibility(View.VISIBLE);
+            rastrear.setVisibility(View.VISIBLE);
+
+            rastrear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    Fragment f = new MapFragment();
+
+                    ft.replace(R.id.fragment_container, f)
+                    .addToBackStack(null).commit();
+                }
+            });
+        }
         return v;
     }
 
@@ -83,11 +111,12 @@ public class DetalleCompraFragment extends Fragment {
         return list;
     }
 
-    public static DetalleCompraFragment newInstance(long idCompra, float subtotal){
+    public static DetalleCompraFragment newInstance(long idCompra, float subtotal, boolean isEntregado){
         DetalleCompraFragment fragment = new DetalleCompraFragment();
         Bundle args = new Bundle();
         args.putLong("id_compra", idCompra);
         args.putFloat("subtotal", subtotal);
+        args.putBoolean("entregado", isEntregado);
         fragment.setArguments(args);
         return fragment;
     }

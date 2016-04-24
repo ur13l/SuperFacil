@@ -21,7 +21,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,6 +71,7 @@
             android:id="@+id/total"/>
     </LinearLayout>
     <Button
+        android:id="@+id/repetir"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
@@ -77,4 +79,35 @@
         android:textColor="#FFF"
         android:text="Repetir pedido"
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/rastrear"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="#bbdefb"
+            android:foreground="?attr/selectableItemBackground"
+            android:visibility="gone"
+            android:textColor="#FFF"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Rastrear envío"
+            />
+        <Button
+            android:id="@+id/cancelar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="#f44336"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            android:foreground="?attr/selectableItemBackground"
+            android:textColor="#FFF"
+            android:text="Cancelar pedido"
+            />
+    </LinearLayout>
 </LinearLayout>
